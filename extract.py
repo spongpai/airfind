@@ -5,7 +5,7 @@ import urllib2, csv,  rauth, time, difflib, random
 
 def read_items(file_name):
     srch_id = []; item_id = []; title = []; address = []
-    with open(file_name) as csvfile:
+    with open(file_name, 'rU') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             #print (row['item_title'] + row['item_add1'] + row['item_add2'])
@@ -144,7 +144,6 @@ def main(dir, input_file, deli, output_file, start, end, min_sleep, max_sleep):
                     match = '0'
 
                 # print general info from yelp
-                print 'check rating: ', rating
                 output += biz_general['yelp_title'] + deli + biz_general['yelp_address'] + deli + biz_general['yelp_phone'] \
                           + deli + match + deli + str(scoreT) + deli + str(scoreA) + deli + str(scoreTA) + deli \
                           + biz_general['price'] + deli + yelp_dict['review'] + deli + yelp_dict['rate'] + deli \
@@ -337,27 +336,14 @@ def send_email(me, you, pwd, subj, text):
 
 
 if __name__=="__main__":
-    '''
-    f = open('food/html/itemid_1233.html', 'r')
-    content = f.read()
-    print content
-
-    key = 'datePublished" content="'
-    index = content.find(key)
-    if index != -1:
-        first_review = content[index + len(key): index + len(key) + 10]
-
-    exit()
-    '''
-
     #main('fulldata/pizza_unique_all.csv', '\t', 'fulldata/result/biz_info.txt', 1774, 2000) #no.
     #read_page('xx', 'http://localhost/~siripening/searchid_613.html', biz_info_header)
     me = 'spongpai99@gmail.com'
     you = 'spongpai@gmail.com'
     pwd = ''
-
-    start = 1
-    end = 6361
+    # error: 2331
+    start =2332
+    end = 3000
     min_sleep = 10
     max_sleep = 20
     dir = 'food'
